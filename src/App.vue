@@ -1,28 +1,64 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <myheader></myheader>
+  <mynav></mynav>
+  <div class="check-form">
+    <input id="inputID" type="text" value="User ID"/>
+    <input id="checkButton" type="button" value="CHECK"/>
+  </div>
+  <div v-html="titleList"></div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import myheader from './components/myheader'
+import mynav from './components/mynav'
+import { Problems } from './problem.js'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    myheader,
+    mynav
+  },
+
+  data: function() {
+    return {
+      titleList: '',
+      item: {},
+    }
+  },
+
+  created: function (){
+    var count = 1;
+    for (const p of Problems){
+      if (!p.id){
+        this.titleList += `<h2 id="${p.title}">${p.title}</h2>`
+      }else{
+        const url = `http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=${p.id}&lang=jp`;
+        const item = {
+          key: p.id,
+          title: `(${count}) ${p.title}`,
+          color: 'white',
+          record: p.hint || '',
+        }
+        this.titleList += `
+          <div style="background: ${item.color}">
+            <p><a href=${url}>(${count}) ${p.title}</a><span>${item.record}</span></p>
+          </div>
+        `
+        count += 1;
+      }
+    }
+  },
+
+  methods: {
+    
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  
 }
 </style>
