@@ -2,11 +2,13 @@
   <div id="app">
   <myheader></myheader>
   <mynav></mynav>
-  <div class="check-form">
-    <input id="inputID" type="text" v-model="userID" placeholder="User ID"/>
-    <input id="checkButton" type="button" value="CHECK" @click="handleClick()"/>
+  <div id="AOJ">
+    <div class="check-form">
+      <input id="inputID" type="text" v-model="userID" placeholder="User ID"/>
+      <input id="checkButton" class="btn btn-warning" type="button" value="CHECK" @click="handleClick()"/>
+    </div>
+    <div id="List" v-html="titleList"></div>
   </div>
-  <div v-html="titleList"></div>
   </div>
 </template>
 
@@ -18,13 +20,20 @@ import { Problems } from './problem.js'
 const ACCEPTED = 4;
 const PRESENTATIONERROR = 8;
 
-const GREEN = '#72af68';
-const YELLOW = '#f9e169';
-const RED = '#f48876';
+const GREY = '#cccccc';
+const WHITE = '#ffffff';
 
 const StatusIcons = [
-  '😭', '😡', '😱', '😱', '🍺',
-  '⚡️', '⚡️', '😨', '😓', '⚡️',
+  '<img src="images/ce@3x.png">',
+  '<img src="images/wa@3x.png">', 
+  '<img src="images/tl@3x.png">', 
+  '<img src="images/ml@3x.png">', 
+  '<img src="images/ac@3x.png">', 
+  '<img src="images/w@3x.png">', 
+  '<img src="images/ol@3x.png">', 
+  '<img src="images/re@3x.png">', 
+  '<img src="images/pe@3x.png">', 
+  '<img src="images/sr@3x.png">',
 ]
 
 export default {
@@ -67,13 +76,10 @@ export default {
 
   methods: {
     colors(status, prev){
-      if (status === ACCEPTED || prev === GREEN) {
-        return GREEN
+      if (status === ACCEPTED || prev === GREY) {
+        return GREY
       }
-      if (status === PRESENTATIONERROR || prev === YELLOW) {
-        return YELLOW
-      }
-      return RED
+      return WHITE
     },
 
     records(status, prev= ''){
@@ -157,7 +163,59 @@ export default {
 </script>
 
 <style>
-#app {
-  
+#AOJ {
+  width: 75%;
+  float: left;
+  margin: 120px 5% 0 20%;
+}
+
+#AOJ #List{
+  margin-top: 20px;
+}
+
+#AOJ p{
+    width: 100%;
+    font-size: 15px;
+    line-height: 2.6;
+    border-bottom: 1px dotted #000;
+}
+
+#AOJ span{
+  float: right;
+}
+
+#AOJ h2{
+  margin-top: 50px;
+}
+
+#AOJ #inputID{
+  font-size: 17px;
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 30px 0 0px 0;
+  height: 40px;
+  width: 13em;
+  transition: all .6s ease;
+  border-bottom:0.5px solid #000;
+  border-right:none;
+  border-left:none;
+  border-top:none;
+  line-height: 40px;
+}
+
+#AOJ #inputID:focus{
+    width:16em;
+    outline: none;
+}
+
+#AOJ #checkButton{
+  margin: 0 20px;
+  font-size: 14px;
+  color: #fff;
+}
+
+#AOJ img{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }
 </style>
