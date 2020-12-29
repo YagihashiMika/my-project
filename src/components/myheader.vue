@@ -13,7 +13,7 @@ header{
     height: 100px;
     letter-spacing: 1px;
     position: fixed;
-    z-index: 10;
+    
 }
 
 header h1{
@@ -29,4 +29,5 @@ header p{
     font-size: 13px;
     font-family: 'Yantramanav', sans-serif;
 }
+
 </style>

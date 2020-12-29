@@ -2,7 +2,7 @@
   <div id="app">
   <myheader></myheader>
   <mynav></mynav>
-  <div id="AOJ">
+  <div id="AOJ" class="container">
     <div class="check-form">
       <input id="inputID" type="text" v-model="userID" placeholder="User ID"/>
       <input id="checkButton" class="btn btn-warning" type="button" value="CHECK" @click="handleClick()"/>
@@ -218,4 +218,6 @@ export default {
     height: 20px;
     margin-right: 10px;
 }
+
+
 </style>
